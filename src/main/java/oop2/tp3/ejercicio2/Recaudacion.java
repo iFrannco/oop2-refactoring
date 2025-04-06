@@ -18,27 +18,12 @@ public class Recaudacion {
 
     public List<Map<String, String>> procesarDatos(Map<String, String> options)
             throws IOException {
-//        List<String[]> csvData = new ArrayList<String[]>();
         List<String[]> csvData = this.importador.importar();
-        // CSVReader reader = new CSVReader(new FileReader("src/main/resources/data.csv"));
-//        String[] row = null;
-//
-//        while ((row = reader.readNext()) != null) {
-//            csvData.add(row);
-//        }
-//
-//        reader.close();
-//        csvData.remove(0);
 
         csvData = filtrarDatos(options, "company_name", csvData, 1);
-
         csvData = filtrarDatos(options, "city", csvData, 4);
-
         csvData = filtrarDatos(options, "state", csvData, 5);
-
         csvData = filtrarDatos(options, "round", csvData, 9);
-
-        // List<Map<String, String>> output = new ArrayList<Map<String, String>>();
 
         return formatearDatos(csvData);
     }
