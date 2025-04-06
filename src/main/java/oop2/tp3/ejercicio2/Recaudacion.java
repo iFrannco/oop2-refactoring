@@ -18,17 +18,17 @@ public class Recaudacion {
 
     public List<Map<String, String>> procesarDatos(Map<String, String> options)
             throws IOException {
-        List<String[]> csvData = new ArrayList<String[]>();
-        CSVReader reader = this.importador.importar();
+//        List<String[]> csvData = new ArrayList<String[]>();
+        List<String[]> csvData = this.importador.importar();
         // CSVReader reader = new CSVReader(new FileReader("src/main/resources/data.csv"));
-        String[] row = null;
-
-        while ((row = reader.readNext()) != null) {
-            csvData.add(row);
-        }
-
-        reader.close();
-        csvData.remove(0);
+//        String[] row = null;
+//
+//        while ((row = reader.readNext()) != null) {
+//            csvData.add(row);
+//        }
+//
+//        reader.close();
+//        csvData.remove(0);
 
         csvData = filtrarDatos(options, "company_name", csvData, 1);
 
@@ -40,8 +40,7 @@ public class Recaudacion {
 
         // List<Map<String, String>> output = new ArrayList<Map<String, String>>();
 
-        List<Map<String, String>> output = formatearDatos(csvData);
-        return output;
+        return formatearDatos(csvData);
     }
 
     private List<Map<String, String>> formatearDatos(List<String[]> csvData) {
@@ -63,12 +62,12 @@ public class Recaudacion {
         return output;
     }
 
-    private List<String[]> filtrarDatos(Map<String, String> options, String company_name, List<String[]> csvData, int x) {
-        if (options.containsKey(company_name)) {
+    private List<String[]> filtrarDatos(Map<String, String> options, String campo, List<String[]> csvData, int columna) {
+        if (options.containsKey(campo)) {
             List<String[]> results = new ArrayList<String[]>();
 
             for (String[] csvDatum : csvData) {
-                if (csvDatum[x].equals(options.get(company_name))) {
+                if (csvDatum[columna].equals(options.get(campo))) {
                     results.add(csvDatum);
                 }
             }
