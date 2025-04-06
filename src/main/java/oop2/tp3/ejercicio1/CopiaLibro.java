@@ -10,4 +10,11 @@ public class CopiaLibro {
     public Libro libro() {
         return libro;
     }
+    public double calcularDeuda(int diasAlquilado){
+        return this.libro.calcularDeuda(diasAlquilado);
+    }
+
+    public int calcularBonus(int diasAlquilado){
+        return this.libro.aplicarBonus(diasAlquilado);
+    }
 }

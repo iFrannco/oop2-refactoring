@@ -17,4 +17,12 @@ public class Alquiler {
         return this.copia;
     }
 
+    public double calcularDeuda(){
+        return copia.calcularDeuda(this.diasAlquilados);
+    }
+
+    public int calcularBonus(){
+        return this.copia.calcularBonus(this.diasAlquilados);
+    }
+
 }

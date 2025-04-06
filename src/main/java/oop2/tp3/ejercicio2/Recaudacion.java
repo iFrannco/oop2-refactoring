@@ -2,7 +2,6 @@ package oop2.tp3.ejercicio2;
 
 import com.opencsv.CSVReader;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,10 +9,18 @@ import java.util.List;
 import java.util.Map;
 
 public class Recaudacion {
-    public static List<Map<String, String>> where(Map<String, String> options)
+
+    private Importador importador;
+
+    public Recaudacion(Importador importador) {
+        this.importador = importador;
+    }
+
+    public List<Map<String, String>> procesarDatos(Map<String, String> options)
             throws IOException {
         List<String[]> csvData = new ArrayList<String[]>();
-        CSVReader reader = new CSVReader(new FileReader("src/main/resources/data.csv"));
+        CSVReader reader = this.importador.importar();
+        // CSVReader reader = new CSVReader(new FileReader("src/main/resources/data.csv"));
         String[] row = null;
 
         while ((row = reader.readNext()) != null) {
@@ -23,66 +30,50 @@ public class Recaudacion {
         reader.close();
         csvData.remove(0);
 
-        if (options.containsKey("company_name")) {
-            List<String[]> results = new ArrayList<String[]>();
+        csvData = filtrarDatos(options, "company_name", csvData, 1);
 
-            for (int i = 0; i < csvData.size(); i++) {
-                if (csvData.get(i)[1].equals(options.get("company_name"))) {
-                    results.add(csvData.get(i));
-                }
-            }
-            csvData = results;
-        }
+        csvData = filtrarDatos(options, "city", csvData, 4);
 
-        if (options.containsKey("city")) {
-            List<String[]> results = new ArrayList<String[]>();
+        csvData = filtrarDatos(options, "state", csvData, 5);
 
-            for (int i = 0; i < csvData.size(); i++) {
-                if (csvData.get(i)[4].equals(options.get("city"))) {
-                    results.add(csvData.get(i));
-                }
-            }
-            csvData = results;
-        }
+        csvData = filtrarDatos(options, "round", csvData, 9);
 
-        if (options.containsKey("state")) {
-            List<String[]> results = new ArrayList<String[]>();
+        // List<Map<String, String>> output = new ArrayList<Map<String, String>>();
 
-            for (int i = 0; i < csvData.size(); i++) {
-                if (csvData.get(i)[5].equals(options.get("state"))) {
-                    results.add(csvData.get(i));
-                }
-            }
-            csvData = results;
-        }
-
-        if (options.containsKey("round")) {
-            List<String[]> results = new ArrayList<String[]>();
-
-            for (int i = 0; i < csvData.size(); i++) {
-                if (csvData.get(i)[9].equals(options.get("round"))) {
-                    results.add(csvData.get(i));
-                }
-            }
-            csvData = results;
-        }
-
-        List<Map<String, String>> output = new ArrayList<Map<String, String>>();
-
-        for (int i = 0; i < csvData.size(); i++) {
-            Map<String, String> mapped = new HashMap<String, String>();
-            mapped.put("permalink", csvData.get(i)[0]);
-            mapped.put("company_name", csvData.get(i)[1]);
-            mapped.put("number_employees", csvData.get(i)[2]);
-            mapped.put("category", csvData.get(i)[3]);
-            mapped.put("city", csvData.get(i)[4]);
-            mapped.put("state", csvData.get(i)[5]);
-            mapped.put("funded_date", csvData.get(i)[6]);
-            mapped.put("raised_amount", csvData.get(i)[7]);
-            mapped.put("raised_currency", csvData.get(i)[8]);
-            mapped.put("round", csvData.get(i)[9]);
-            output.add(mapped);
-        }
+        List<Map<String, String>> output = formatearDatos(csvData);
         return output;
+    }
+
+    private List<Map<String, String>> formatearDatos(List<String[]> csvData) {
+        List<Map<String, String>> output = new ArrayList<Map<String, String>>();
+        csvData.forEach(csvDatum -> {
+            Map<String, String> mapped = new HashMap<>();
+            mapped.put("permalink", csvDatum[0]);
+            mapped.put("company_name", csvDatum[1]);
+            mapped.put("number_employees", csvDatum[2]);
+            mapped.put("category", csvDatum[3]);
+            mapped.put("city", csvDatum[4]);
+            mapped.put("state", csvDatum[5]);
+            mapped.put("funded_date", csvDatum[6]);
+            mapped.put("raised_amount", csvDatum[7]);
+            mapped.put("raised_currency", csvDatum[8]);
+            mapped.put("round", csvDatum[9]);
+            output.add(mapped);
+        });
+        return output;
+    }
+
+    private List<String[]> filtrarDatos(Map<String, String> options, String company_name, List<String[]> csvData, int x) {
+        if (options.containsKey(company_name)) {
+            List<String[]> results = new ArrayList<String[]>();
+
+            for (String[] csvDatum : csvData) {
+                if (csvDatum[x].equals(options.get(company_name))) {
+                    results.add(csvDatum);
+                }
+            }
+            csvData = results;
+        }
+        return csvData;
     }
 }

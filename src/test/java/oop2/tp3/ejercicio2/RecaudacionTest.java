@@ -13,53 +13,67 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RecaudacionTest {
 
     @Test
-    public void testWhereGivenCompany() throws IOException {
+    public void testProcesarDatosGivenCompany() throws IOException {
+        var importador = new ImportadorFake();
+        var recaudacion = new Recaudacion(importador);
         Map<String, String> options = new HashMap<String, String>();
         options.put("company_name", "Facebook");
-        assertEquals(Recaudacion.where(options).size(), 7);
+        assertEquals(recaudacion.procesarDatos(options).size(), 1);
     }
 
     @Test
-    public void testWhereGivenCity() throws IOException {
+    public void testProcesarDatosGivenCity() throws IOException {
+        var importador = new ImportadorFake();
+        var recaudacion = new Recaudacion(importador);
         Map<String, String> options = new HashMap<String, String>();
         options.put("city", "Tempe");
-        assertEquals(Recaudacion.where(options).size(), 3);
+        assertEquals(recaudacion.procesarDatos(options).size(), 0);
     }
 
     @Test
-    public void testWhereGivenState() throws IOException {
+    public void testProcesarDatosGivenState() throws IOException {
+        var importador = new ImportadorFake();
+        var recaudacion = new Recaudacion(importador);
         Map<String, String> options = new HashMap<String, String>();
         options.put("state", "CA");
-        assertEquals(Recaudacion.where(options).size(), 873);
+        assertEquals(recaudacion.procesarDatos(options).size(), 2);
     }
 
     @Test
-    public void testWhereGivenRound() throws IOException {
+    public void testProcesarDatosGivenRound() throws IOException {
+        var importador = new ImportadorFake();
+        var recaudacion = new Recaudacion(importador);
         Map<String, String> options = new HashMap<String, String>();
         options.put("round", "a");
-        assertEquals(Recaudacion.where(options).size(), 582);
+        assertEquals(recaudacion.procesarDatos(options).size(), 0);
     }
 
     @Test
     public void testMultipleOptions() throws IOException {
+        var importador = new ImportadorFake();
+        var recaudacion = new Recaudacion(importador);
         Map<String, String> options = new HashMap<String, String>();
         options.put("round", "a");
         options.put("company_name", "Facebook");
-        assertEquals(Recaudacion.where(options).size(), 1);
+        assertEquals(recaudacion.procesarDatos(options).size(), 0);
     }
 
     @Test
-    public void testWhereNotExists() throws IOException {
+    public void testProcesarDatosNotExists() throws IOException {
+        var importador = new ImportadorFake();
+        var recaudacion = new Recaudacion(importador);
         Map<String, String> options = new HashMap<String, String>();
         options.put("company_name", "NotFacebook");
-        assertEquals(Recaudacion.where(options).size(), 0);
+        assertEquals(recaudacion.procesarDatos(options).size(), 0);
     }
 
     @Test
-    public void testWhereCorrectKeys() throws IOException {
+    public void testProcesarDatosCorrectKeys() throws IOException {
+        var importador = new ImportadorFake();
+        var recaudacion = new Recaudacion(importador);
         Map<String, String> options = new HashMap<String, String>();
         options.put("company_name", "Facebook");
-        Map<String, String> row = Recaudacion.where(options).get(0);
+        Map<String, String> row = recaudacion.procesarDatos(options).get(0);
 
         assertEquals(row.get("permalink"), "facebook");
         assertEquals(row.get("company_name"), "Facebook");

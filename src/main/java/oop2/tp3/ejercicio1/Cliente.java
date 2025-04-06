@@ -23,7 +23,8 @@ public class Cliente {
             // crear clases concretas de libros por tipo
             // mover cada uno de los case a las clases que pertencen.
 
-            total += alquiler.copia().libro().calcularDeuda(alquiler.diasAlquilados());
+            // total += alquiler.copia().libro().calcularDeuda(alquiler.diasAlquilados());
+            total += alquiler.calcularDeuda();
 
 //            switch (alquiler.copia().libro().codigoPrecio()) {
 //                case Libro.REGULARES:
@@ -44,7 +45,9 @@ public class Cliente {
             // sumo puntos por alquiler
             puntosAlquilerFrecuente++;
             // bonus por dos días de alquiler de un nuevo lanzamiento
-            puntosAlquilerFrecuente += alquiler.copia().libro().aplicarBonus(alquiler.diasAlquilados());
+
+            // puntosAlquilerFrecuente += alquiler.copia().libro().aplicarBonus(alquiler.diasAlquilados());
+            puntosAlquilerFrecuente += alquiler.calcularBonus();
 //            if ((alquiler.copia().libro().codigoPrecio() == Libro.NUEVO_LANZAMIENTO)
 //                    && alquiler.diasAlquilados() > 1) {
 //                puntosAlquilerFrecuente++;

@@ -1,5 +1,8 @@
 package oop2.tp3.ejercicio1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String args[]) {
         Libro elTunel = new LibroRegular("El Túnel", Libro.REGULARES);
@@ -14,5 +17,6 @@ public class Main {
         Object[] resultado = yo.calcularDeudaYPuntosObtenidos();
         System.out.println(resultado[0]);
         System.out.println(resultado[1]);
+
     }
 }
