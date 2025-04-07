@@ -13,13 +13,21 @@ class Gasto {
 }
 
 public class ReporteDeGastos {
-    public void imprimir(List<Gasto> gastos) {
+    private List<Gasto> gastos;
+
+    public ReporteDeGastos(List<Gasto> gastos) {
+        this.gastos = gastos;
+    }
+
+    public String imprimir() {
         int total = 0;
         int gastosDeComida = 0;
 
-        System.out.println("Expenses " + LocalDate.now());
+        StringBuilder resultado = new StringBuilder();
+        resultado.append("Expenses ").append(LocalDate.now()).append("\n");
+        // System.out.println("Expenses " + LocalDate.now());
 
-        for (Gasto gasto : gastos) {
+        for (Gasto gasto : this.gastos) {
             if (gasto.tipoGasto == TipoDeGasto.CENA || gasto.tipoGasto == TipoDeGasto.DESAYUNO) {
                 gastosDeComida += gasto.monto;
             }
@@ -40,12 +48,16 @@ public class ReporteDeGastos {
             String marcaExcesoComidas = gasto.tipoGasto == TipoDeGasto.CENA && gasto.monto > 5000
                     || gasto.tipoGasto == TipoDeGasto.DESAYUNO && gasto.monto > 1000 ? "X" : " ";
 
-            System.out.println(nombreGasto + "\t" + gasto.monto + "\t" + marcaExcesoComidas);
+            // System.out.println(nombreGasto + "\t" + gasto.monto + "\t" + marcaExcesoComidas);
+            resultado.append(nombreGasto).append("\t").append(gasto.monto).append("\t").append(marcaExcesoComidas).append("\n");
 
             total += gasto.monto;
         }
 
-        System.out.println("Gastos de comida: " + gastosDeComida);
-        System.out.println("Total de gastos: " + total);
+        resultado.append("Gastos de comida: ").append(gastosDeComida).append("\n");
+        resultado.append("Total de gastos: ").append(total).append("\n");
+//        System.out.println("Gastos de comida: " + gastosDeComida);
+//        System.out.println("Total de gastos: " + total);
+        return resultado.toString();
     }
 }
