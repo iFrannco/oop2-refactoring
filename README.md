@@ -48,7 +48,7 @@ para refactorizar.
     - Movamos la lectura del archivo csv a otra clase.
     - Mejoremos el for utizando el foreach.
     - Transformemos el método estático en método de instancia (agreguemos constructor e inicialicemos ahi).
-    - Removamos código duplicado utilizando expresiones lambda.
+    - Removamos código duplicado del foreach, utilizando expresiones lambda o simplemente extraigan en un método.
     - Removamos las constantes duplicadas.
 - Ejercicio 3: Utilicemos polimorfismo y tell don't ask.
     - Escribamos tests. Hagamos lo mínimo para que nos permita testear. Por ejemplo, no usar *sysout*, retornar un
@@ -59,5 +59,7 @@ para refactorizar.
       comida.
     - Apliquemos polimorfismo para eliminar preguntar por el tipo para la marca de exceso.
 - Ejercicio 4: Removamos el uso de *null*.
+- Ejercicio 5 (Opcional): Utilicemos polimorfismo y tell don't ask.
+    - Antes de comenzar a refactorizar, escribamos tests.
 
 El ejercicio 2 fue tomado de [lamchau](https://github.com/lamchau/refactoring-exercise).
