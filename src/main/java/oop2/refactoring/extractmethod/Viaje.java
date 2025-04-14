@@ -10,10 +10,14 @@ public class Viaje {
 
     public double costoDelViaje() {
         //¿Qué significa esta condición en las reglas del negocio?
-        if (horaSalida.getHour() > 22 || horaSalida.getHour() < 06) {
+        if (esViajeNocturno()) {
             return distanciaRecorrida * 5;
         } else {
             return distanciaRecorrida * 3;
         }
+    }
+
+    private boolean esViajeNocturno() {
+        return horaSalida.getHour() > 22 || horaSalida.getHour() < 06;
     }
 }

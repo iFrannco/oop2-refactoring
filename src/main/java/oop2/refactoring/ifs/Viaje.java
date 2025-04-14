@@ -16,13 +16,11 @@ public class Viaje {
     public double costoDelViaje() {
         if (esHorarioNocturno()) {
             return distanciaRecorrida * COEFICIENTE_VIAJE_NOCTURNO;
-        } else {
-            if (esDomingo()) {
-                return distanciaRecorrida * COEFICIENTE_VIAJE_DOMINGO;
-            } else {
-                return distanciaRecorrida * COEFICIENTE_VIAJE_DIURNO;
-            }
         }
+        if (esDomingo()) {
+            return distanciaRecorrida * COEFICIENTE_VIAJE_DOMINGO;
+        }
+        return distanciaRecorrida * COEFICIENTE_VIAJE_DIURNO;
     }
 
     private boolean esDomingo() {

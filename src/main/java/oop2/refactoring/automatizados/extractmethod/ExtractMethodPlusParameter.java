@@ -5,21 +5,20 @@ package oop2.refactoring.automatizados.extractmethod;
 // Si hubiera hecho a mano el movimiento podria haber metido un bug.
 public class ExtractMethodPlusParameter {
     public void methodOne() {
-        System.out.println("más lógica methodOne");
+        metodo("más lógica methodOne", "Message: ");
+    }
+
+    private static void metodo(String más_lógica_methodOne, String x) {
+        System.out.println(más_lógica_methodOne);
 
         String[] words = {"Hello", "World", "Java"};
         for (String word : words) {
-            System.out.println("Message: " + word);
+            System.out.println(x + word);
         }
     }
 
     public void methodTwo() {
-        System.out.println("más lógica methodTwo");
-
-        String[] words = {"Hello", "World", "Java"};
-        for (String w : words) {
-            System.out.println("Message:" + w); // Nota el doble espacio después de "Message:"
-        }
+        metodo("más lógica methodTwo", "Message:");
     }
 
 }

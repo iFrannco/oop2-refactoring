@@ -7,27 +7,30 @@ package oop2.refactoring.automatizados.parameters;
 //4. "Introduce Parameter Object": price, quantity, y descuento en Compra
 
 public class Parameters {
-    public void cobrar() {
-        double total = this.calculateTotal(100, 2);
+    public void cobrar(String numeroTarjeta) {
+        double total = this.calculateTotal(new Parametros(100, 2, 0.1F));
         System.out.println("Total: " + total);
     }
 
-    private double calculateTotal(double price, int quantity) {
-        var total = price * quantity;
-        return total + total * 0.1F;
+    private double calculateTotal(Parametros parametros) {
+        var total = parametros.price() * parametros.quantity();
+        return total + total * parametros.descuento();
+    }
+
+    private static record Parametros(double price, int quantity, float descuento) {
     }
 }
 
 class Caller1 {
     public void caller1() {
         var p = new Parameters();
-        p.cobrar();
+        p.cobrar("12345");
     }
 }
 
 class Caller2 {
     public void caller2() {
         var p = new Parameters();
-        p.cobrar();
+        p.cobrar("12345");
     }
 }

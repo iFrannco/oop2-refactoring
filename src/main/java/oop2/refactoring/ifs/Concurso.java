@@ -9,13 +9,12 @@ public class Concurso {
     private List<Participante> participantes;
 
     public void agregarParticipante(Participante participante) throws Exception {
-        if (esFechaValida()) {
-            this.participantes.add(participante);
-            if (esPrimerDia()) {
-                participante.sumarPuntosPorInscripcion();
-            }
-        } else {
+        if (!esFechaValida()) {
             throw new Exception("La fecha no es valida");
+        }
+        this.participantes.add(participante);
+        if (esPrimerDia()) {
+            participante.sumarPuntosPorInscripcion();
         }
     }
 

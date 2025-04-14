@@ -9,7 +9,7 @@ import java.util.List;
 //Porque necesita cambiar el caller, incorporar la instancia a donde movio el método.
 //Si descomento private Bla bla, tambien aparece como opción Bla como destino.
 public class Filtro {
-    //private Bla bla;
+    private Bla bla;
 
     public List<Persona> nombresQueEmpiezanConE(List<Persona> p) {
         List<Persona> resultado = new ArrayList<>();
