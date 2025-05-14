@@ -14,12 +14,12 @@ public class ReporteDeGastos {
         this.gastos = gastos;
     }
 
-    public String imprimir() {
+    public String imprimir(LocalDate fechaReporte) {
         int total = 0;
         int gastosDeComida = 0;
 
         StringBuilder resultado = new StringBuilder();
-        resultado.append("Expenses ").append(LocalDate.now()).append("\n");
+        resultado.append("Expenses ").append(fechaReporte).append("\n");
 
         for (Gasto gasto : this.gastos) {
             gastosDeComida += gasto.obtenerMontoComida();

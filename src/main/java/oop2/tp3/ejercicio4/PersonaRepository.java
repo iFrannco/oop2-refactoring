@@ -26,9 +26,9 @@ public class PersonaRepository {
 
             var personas = new ArrayList<Persona>();
 
-            if (rs.isEmpty()) {
-                return personas;
-            }
+//            if (rs.isEmpty()) {
+//                return personas;
+//            }
 
             for (Map<String, String> map : rs) {
                 personas.add(new Persona(map.get("nombre"), map.get("apellido")));

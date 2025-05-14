@@ -3,7 +3,8 @@ package oop2.tp3.ejercicio1;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class
+Main {
     public static void main(String args[]) {
         Libro elTunel = new LibroRegular("El Túnel", Libro.REGULARES);
         Libro antesDelFin = new LibroRegular("Antes del Fin", Libro.REGULARES);

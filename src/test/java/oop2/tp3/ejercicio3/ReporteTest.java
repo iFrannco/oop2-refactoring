@@ -18,9 +18,9 @@ public class ReporteTest {
         var reporte = new ReporteDeGastos(List.of(g1, g2));
 
         // Execute
-        String reporteImpreso = reporte.imprimir();
+        String reporteImpreso = reporte.imprimir(LocalDate.of(2014, 1, 1));
         String resultadoEsperado = "Expenses " +
-                LocalDate.now().toString() + "\n" +
+                LocalDate.of(2014, 1, 1).toString() + "\n" +
                 "Desayuno\t1000\t \n" +
                 "Desayuno\t2000\tX\n" +
                 "Gastos de comida: 3000\n" +
@@ -40,9 +40,9 @@ public class ReporteTest {
         var reporte = new ReporteDeGastos(List.of(g1, g2));
 
         // Execute
-        String reporteImpreso = reporte.imprimir();
+        String reporteImpreso = reporte.imprimir(LocalDate.of(2013, 1, 1));
         String resultadoEsperado = "Expenses " +
-                LocalDate.now().toString() + "\n" +
+                LocalDate.of(2013, 1, 1).toString() + "\n" +
                 "Cena\t1000\t \n" +
                 "Cena\t6000\tX\n" +
                 "Gastos de comida: 7000\n" +
@@ -61,9 +61,9 @@ public class ReporteTest {
         var reporte = new ReporteDeGastos(List.of(g1));
 
         // Execute
-        String reporteImpreso = reporte.imprimir();
+        String reporteImpreso = reporte.imprimir(LocalDate.of(2012, 1, 1));
         String resultadoEsperado = "Expenses " +
-                LocalDate.now().toString() + "\n" +
+                LocalDate.of(2012, 1, 1).toString() + "\n" +
                 "Alquier Auto\t1000\t \n" +
                 "Gastos de comida: 0\n" +
                 "Total de gastos: 1000\n";

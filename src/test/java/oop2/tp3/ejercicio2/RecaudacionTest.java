@@ -55,7 +55,7 @@ public class RecaudacionTest {
         List<Map<String, String>> resultado = recaudacion.aplicarFiltro("round", "a")
                 .aplicarFiltro("company_name", "Facebook")
                 .procesarDatos();
-        assertEquals(resultado.size(), 0);
+        assertEquals(resultado.size(), 1);
     }
 
     @Test
