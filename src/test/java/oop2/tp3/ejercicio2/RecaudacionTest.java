@@ -3,7 +3,6 @@ package oop2.tp3.ejercicio2;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RecaudacionTest {
 
     @Test
-    public void testProcesarDatosGivenCompany() throws IOException {
+    public void testProcesarDatosGivenCompany() {
         var importador = new ImportadorFake();
         var recaudacion = new Recaudacion(importador);
         List<Map<String, String>> resultado = recaudacion.aplicarFiltro("company_name", "Facebook")
@@ -22,7 +21,7 @@ public class RecaudacionTest {
     }
 
     @Test
-    public void testProcesarDatosGivenCity() throws IOException {
+    public void testProcesarDatosGivenCity() {
         var importador = new ImportadorFake();
         var recaudacion = new Recaudacion(importador);
         List<Map<String, String>> resultado = recaudacion.aplicarFiltro("city", "Tempe")
@@ -31,7 +30,7 @@ public class RecaudacionTest {
     }
 
     @Test
-    public void testProcesarDatosGivenState() throws IOException {
+    public void testProcesarDatosGivenState() {
         var importador = new ImportadorFake();
         var recaudacion = new Recaudacion(importador);
         List<Map<String, String>> resultado = recaudacion.aplicarFiltro("state", "CA")
@@ -40,7 +39,7 @@ public class RecaudacionTest {
     }
 
     @Test
-    public void testProcesarDatosGivenRound() throws IOException {
+    public void testProcesarDatosGivenRound() {
         var importador = new ImportadorFake();
         var recaudacion = new Recaudacion(importador);
         List<Map<String, String>> resultado = recaudacion.aplicarFiltro("round", "a")
@@ -49,7 +48,7 @@ public class RecaudacionTest {
     }
 
     @Test
-    public void testMultipleOptions() throws IOException {
+    public void testMultipleOptions() {
         var importador = new ImportadorFake();
         var recaudacion = new Recaudacion(importador);
         List<Map<String, String>> resultado = recaudacion.aplicarFiltro("round", "a")
@@ -59,7 +58,7 @@ public class RecaudacionTest {
     }
 
     @Test
-    public void testProcesarDatosNotExists() throws IOException {
+    public void testProcesarDatosNotExists() {
         var importador = new ImportadorFake();
         var recaudacion = new Recaudacion(importador);
         List<Map<String, String>> resultado = recaudacion.aplicarFiltro("company_name", "NotFacebook")
@@ -68,7 +67,7 @@ public class RecaudacionTest {
     }
 
     @Test
-    public void testProcesarDatosCorrectKeys() throws IOException {
+    public void testProcesarDatosCorrectKeys() {
         var importador = new ImportadorFake();
         var recaudacion = new Recaudacion(importador);
         List<Map<String, String>> resultado = recaudacion.aplicarFiltro("company_name", "Facebook")
@@ -90,7 +89,7 @@ public class RecaudacionTest {
     }
 
     @Test
-    public void testCampoInexistente() throws IOException {
+    public void testCampoInexistente() {
         var importador = new ImportadorFake();
         var recaudacion = new Recaudacion(importador);
         List<Map<String, String>> resultado = recaudacion.aplicarFiltro("noExiste", "valor")

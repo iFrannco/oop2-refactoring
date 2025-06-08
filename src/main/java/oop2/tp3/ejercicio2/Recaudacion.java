@@ -72,20 +72,6 @@ public class Recaudacion {
         return output;
     }
 
-//    private List<String[]> filtrarDatos(String nombreColumna, int indiceColumna) {
-//        if (this.filtros.containsKey(nombreColumna)) {
-//            List<String[]> results = new ArrayList<String[]>();
-//
-//            for (String[] csvDatum : this.csvData) {
-//                if (csvDatum[indiceColumna].equals(this.filtros.get(nombreColumna))) {
-//                    results.add(csvDatum);
-//                }
-//            }
-//            csvData = results;
-//        }
-//        return csvData;
-//    }
-
     public Recaudacion aplicarFiltro(String campo, String valorCampo) {
         // Si el filtro ya existe, lanzar una excepcion?
         this.filtros.put(campo, valorCampo);

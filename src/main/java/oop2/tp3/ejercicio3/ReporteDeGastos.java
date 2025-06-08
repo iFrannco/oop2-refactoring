@@ -3,10 +3,6 @@ package oop2.tp3.ejercicio3;
 import java.time.LocalDate;
 import java.util.List;
 
-enum TipoDeGasto {
-    CENA, DESAYUNO, ALQUILER_AUTO
-}
-
 public class ReporteDeGastos {
     private List<Gasto> gastos;
 
